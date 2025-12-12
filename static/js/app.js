@@ -430,6 +430,9 @@ async function refreshCollectionInfo() {
     if (error) {
         content.innerHTML = `<div class="col-12">${Components.errorAlert(error)}</div>`;
     } else {
+        // Format status to be more readable
+        const formattedStatus = data.status.charAt(0).toUpperCase() + data.status.slice(1);
+
         content.innerHTML = `
             <div class="col-md-4">
                 ${Components.collectionStat(data.collection_name, 'Collection Name')}
@@ -438,7 +441,7 @@ async function refreshCollectionInfo() {
                 ${Components.collectionStat(data.total_documents.toString(), 'Total Documents')}
             </div>
             <div class="col-md-4">
-                ${Components.collectionStat(data.status, 'Status')}
+                ${Components.collectionStat(formattedStatus, 'Status')}
             </div>
         `;
 
